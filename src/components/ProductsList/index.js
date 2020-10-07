@@ -1,23 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Product from './Product';
+import ProductCard from './ProductCard';
+import './index.scss';
+import Heading from '../Heading/Heading';
 
 const ProductsList = ({ products }) => (
-    <div>
-        <h1>ProductsList</h1>
-        {products.map(({
-            id, title, price, cover, currency,
-        }) => (
-                <Product
-                    key={id}
-                    cover={cover}
-                    title={title}
-                    price={price}
-                    currency={currency}
-                />
-            ))}
-    </div>
+    <section className="wrapper">
+        <Heading>Our products</Heading>
+        <ul className="productsList">
+            {products.map(({
+                id, title, price, cover, currency,
+            }) => (
+                    <ProductCard
+                        key={id}
+                        cover={cover}
+                        title={title}
+                        price={price}
+                        currency={currency}
+                    />
+                ))}
+        </ul>
+    </section>
 );
 
 ProductsList.propTypes = {

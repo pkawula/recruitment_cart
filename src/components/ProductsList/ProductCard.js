@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
+import './ProductCard.scss';
 
 const Product = ({
     cover, title, price, currency,
 }) => (
-        <li className="product">
-            <img className="product__image" src={cover} alt={title} />
-            <p className="product__title">{title}</p>
-            <span className="product__price">
-                {`${price} ${currency}`}
+        <li className="productCard">
+            <img className="productCard__image" src={cover} alt={title} />
+            <p className="productCard__title">{title}</p>
+            <span className="productCard__price">
+                {price}
+                <span className="productCard__price--currency">{currency}</span>
             </span>
             <Button>Add to cart</Button>
         </li>
