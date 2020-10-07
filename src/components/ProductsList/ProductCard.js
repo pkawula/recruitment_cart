@@ -10,7 +10,7 @@ const Product = ({
             <img className="productCard__image" src={cover} alt={title} />
             <p className="productCard__title">{title}</p>
             <span className="productCard__price">
-                {price}
+                {price.toFixed(2)}
                 <span className="productCard__price--currency">{currency}</span>
             </span>
             <Button>Add to cart</Button>
