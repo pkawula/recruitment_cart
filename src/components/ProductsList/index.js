@@ -6,7 +6,7 @@ import './index.scss';
 import Heading from '../Heading/Heading';
 
 const ProductsList = ({ products }) => (
-    <section className="wrapper">
+    <section className="productsWrapper">
         <Heading>Our products</Heading>
         <ul className="productsList">
             {products.map(({
@@ -18,6 +18,7 @@ const ProductsList = ({ products }) => (
                         title={title}
                         price={price}
                         currency={currency}
+                        id={id}
                     />
                 ))}
         </ul>
@@ -25,9 +26,9 @@ const ProductsList = ({ products }) => (
 );
 
 ProductsList.propTypes = {
-    products: PropTypes.arrayOf([PropTypes.object]).isRequired,
+    products: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-const mapStateToProps = (state) => ({ products: state });
+const mapStateToProps = ({ itemsReducer }) => ({ products: itemsReducer });
 
 export default connect(mapStateToProps)(ProductsList);

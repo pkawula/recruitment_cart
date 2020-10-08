@@ -1,5 +1,12 @@
 @import '../../utils/scss/variables';
 
+.cartEmpty__message {
+    font-size: $xxl;
+    font-weight: $bold;
+    text-align: center;
+    color: lighten($color_primary, 70%);
+}
+
 .cartTable {
     width: 100%;
     max-width: 95%;

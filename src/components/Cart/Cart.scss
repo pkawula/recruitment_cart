@@ -1,6 +1,9 @@
+@import '../../utils/scss/variables';
+
 .cartWrapper {
     display: block;
     width: 100%;
+    border-left: 1px solid $color_tertiary;
 
     @media screen and (min-width: 1024px) {
         height: 100vh;

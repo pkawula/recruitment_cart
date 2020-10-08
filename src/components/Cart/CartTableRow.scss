@@ -35,6 +35,20 @@
             width: 150px;
             font-weight: $semi-bold;
         }
+
+        &--delete {
+            width: 50px;
+        }
+
+        &--input {
+            border: none;
+            max-width: 50px;
+            border-radius: .5em;
+            background-color: lighten($bg_primary, 3%);
+            padding: .5em;
+            margin: .5em 0;
+            text-align: center;
+        }
     }
 
     &__image {
