@@ -1,0 +1,9 @@
+.cartWrapper {
+    display: block;
+    width: 100%;
+
+    @media screen and (min-width: 1024px) {
+        height: 100vh;
+        overflow-y: auto;
+    }
+}

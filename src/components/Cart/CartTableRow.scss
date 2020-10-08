@@ -1,0 +1,47 @@
+@import '../../utils/scss/variables';
+
+.cartTableRow {
+    width: 100%;
+    border-top: 1px solid darken($bg_primary, 5%);
+
+    &:nth-child(2) {
+        border-top: none;
+    }
+
+    &__cell {
+        padding: 1em;
+        border: none;
+
+        &--image {
+            width: 100px;
+        }
+
+        &--title {
+            width: 200px;
+        }
+
+        &--price {
+            text-align: right;
+            width: 150px;
+        }
+
+        &--quantity {
+            text-align: center;
+            width: 50px;
+        }
+
+        &--value {
+            text-align: right;
+            width: 150px;
+            font-weight: $semi-bold;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        min-width: 50px;
+        max-width: 100px;
+        display: block;
+        margin: 0 auto;
+    }
+}

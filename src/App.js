@@ -8,8 +8,10 @@ import './utils/scss/_global.scss';
 function App() {
   return (
     <Provider store={store}>
-      <ProductsList />
-      <Cart />
+      <div className="appWrapper">
+        <ProductsList />
+        <Cart />
+      </div>
     </Provider>
   );
 }

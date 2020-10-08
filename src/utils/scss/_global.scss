@@ -22,3 +22,16 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.appWrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    @media screen and (min-width: 1024px) {
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+}

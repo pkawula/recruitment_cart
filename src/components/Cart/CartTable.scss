@@ -1,0 +1,19 @@
+@import '../../utils/scss/variables';
+
+.cartTable {
+    width: 100%;
+    max-width: 95%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid darken($bg_primary, 5%);
+
+    &__headRow {
+        background-color: darken($bg_primary, 3%);
+
+        &--column {
+            padding: 1em;
+            text-align: center;
+            font-weight: $semi-bold;
+        }
+    }
+}
