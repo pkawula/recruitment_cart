@@ -10,7 +10,7 @@ const ProductsList = ({ products }) => (
         <Heading>Our products</Heading>
         <ul className="productsList">
             {products.map(({
-                id, title, price, cover, currency,
+                id, title, price, cover, currency, availability,
             }) => (
                     <ProductCard
                         key={id}
@@ -19,6 +19,7 @@ const ProductsList = ({ products }) => (
                         price={price}
                         currency={currency}
                         id={id}
+                        availability={availability}
                     />
                 ))}
         </ul>
@@ -29,6 +30,6 @@ ProductsList.propTypes = {
     products: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-const mapStateToProps = ({ itemsReducer }) => ({ products: itemsReducer });
+const mapStateToProps = ({ items }) => ({ products: items });
 
 export default connect(mapStateToProps)(ProductsList);

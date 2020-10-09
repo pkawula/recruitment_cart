@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { removeFromCart as removeFromCartAction } from '../../actions';
 import './CartTableRow.scss';
 import Button from '../Button';
 import { ReactComponent as SubstractIcon } from '../../utils/icons/minus.svg';
@@ -7,12 +9,17 @@ import { ReactComponent as AddIcon } from '../../utils/icons/plus.svg';
 import { ReactComponent as RemoveIcon } from '../../utils/icons/remove.svg';
 
 const CartTableRow = ({
+    id,
     cover,
     title,
     price,
     currency,
+    availability,
+    removeFromCart,
 }) => {
     const [quantity, setQuantity] = useState(1);
+
+    const [itemValue, setItemValue] = useState(price.toFixed(2));
 
     const addQuantity = () => setQuantity((prevQuantity) => prevQuantity + 1);
     const substractQuantity = () => {
@@ -28,6 +35,10 @@ const CartTableRow = ({
 
         return setQuantity(value);
     };
+
+    useEffect(() => {
+        setItemValue((price * quantity).toFixed(2));
+    }, [quantity, price]);
 
     return (
         <tr className="cartTableRow">
@@ -46,10 +57,16 @@ const CartTableRow = ({
                 </Button>
             </td>
             <td className="cartTableRow__cell cartTableRow__cell--value">
-                {`${(quantity * price).toFixed(2)} ${currency}`}
+                {`${itemValue} ${currency}`}
             </td>
             <td className="cartTableRow__cell cartTableRow__cell--delete">
-                <Button icon warn>
+                <Button
+                    onClick={() => removeFromCart({
+                        title, price, cover, id, availability, currency,
+                    })}
+                    icon
+                    warn
+                >
                     <RemoveIcon />
                 </Button>
             </td>
@@ -61,7 +78,14 @@ CartTableRow.propTypes = {
     cover: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
     currency: PropTypes.string.isRequired,
+    availability: PropTypes.bool.isRequired,
+    removeFromCart: PropTypes.func.isRequired,
 };
 
-export default CartTableRow;
+const mapDispatchToProps = (dispatch) => ({
+    removeFromCart: (itemContent) => dispatch(removeFromCartAction(itemContent)),
+});
+
+export default connect(null, mapDispatchToProps)(CartTableRow);

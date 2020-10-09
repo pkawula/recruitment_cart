@@ -24,3 +24,13 @@
         }
     }
 }
+
+.cartTotal {
+    display: block;
+    width: 100%;
+    padding: 1em;
+    margin: 0 auto;
+    text-align: right;
+    font-size: $m;
+    font-weight: $semi-bold;
+}

@@ -38,4 +38,26 @@
             font-weight: $regular;
         }
     }
+
+    &__unavailable {
+        pointer-events: none;
+        position: relative;
+        opacity: .5;
+        overflow-x: hidden;
+
+        &::after {
+            content: 'UNAVAILABLE';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            z-index: 2;
+            font-size: $xxl;
+            font-weight: $bold;
+            color: $color_secondary;
+            opacity: 1;
+            box-shadow: $box-shadow;
+            background-color: $warn;
+        }
+    }
 }
