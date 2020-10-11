@@ -16,14 +16,27 @@ const CartTableRow = ({
     currency,
     availability,
     removeFromCart,
+    incrementTotal,
+    decrementTotal,
 }) => {
     const [quantity, setQuantity] = useState(1);
+    const [itemValue, setItemValue] = useState(price);
 
-    const [itemValue, setItemValue] = useState(price.toFixed(2));
+    useEffect(() => {
+        incrementTotal(price);
+    }, [incrementTotal, price]);
 
-    const addQuantity = () => setQuantity((prevQuantity) => prevQuantity + 1);
+    const addQuantity = () => {
+        setQuantity((prevQuantity) => prevQuantity + 1);
+        return incrementTotal(price);
+    };
     const substractQuantity = () => {
-        if (quantity === 1) return setQuantity(1);
+        decrementTotal(price);
+        if (quantity === 1) {
+            return removeFromCart({
+                title, price, cover, id, availability, currency,
+            });
+        }
 
         return setQuantity((prevQuantity) => prevQuantity - 1);
     };
@@ -37,7 +50,7 @@ const CartTableRow = ({
     };
 
     useEffect(() => {
-        setItemValue((price * quantity).toFixed(2));
+        setItemValue(price * quantity);
     }, [quantity, price]);
 
     return (
@@ -57,13 +70,16 @@ const CartTableRow = ({
                 </Button>
             </td>
             <td className="cartTableRow__cell cartTableRow__cell--value">
-                {`${itemValue} ${currency}`}
+                {`${itemValue.toFixed(2)} ${currency}`}
             </td>
             <td className="cartTableRow__cell cartTableRow__cell--delete">
                 <Button
-                    onClick={() => removeFromCart({
-                        title, price, cover, id, availability, currency,
-                    })}
+                    onClick={() => {
+                        decrementTotal(itemValue);
+                        return removeFromCart({
+                            title, price, cover, id, availability, currency,
+                        });
+                    }}
                     icon
                     warn
                 >
@@ -82,6 +98,8 @@ CartTableRow.propTypes = {
     currency: PropTypes.string.isRequired,
     availability: PropTypes.bool.isRequired,
     removeFromCart: PropTypes.func.isRequired,
+    incrementTotal: PropTypes.func.isRequired,
+    decrementTotal: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
