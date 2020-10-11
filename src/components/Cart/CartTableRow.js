@@ -26,12 +26,9 @@ const CartTableRow = ({
         incrementTotal(price);
     }, [incrementTotal, price]);
 
-    const addQuantity = () => {
-        setQuantity((prevQuantity) => prevQuantity + 1);
-        return incrementTotal(price);
-    };
+    const addQuantity = () => setQuantity((prevQuantity) => prevQuantity + 1);
+
     const substractQuantity = () => {
-        decrementTotal(price);
         if (quantity === 1) {
             return removeFromCart({
                 title, price, cover, id, availability, currency,
@@ -50,8 +47,10 @@ const CartTableRow = ({
     };
 
     useEffect(() => {
+        decrementTotal(itemValue);
+        incrementTotal(price * quantity);
         setItemValue(price * quantity);
-    }, [quantity, price]);
+    }, [quantity, price, incrementTotal, decrementTotal, itemValue]);
 
     return (
         <tr className="cartTableRow">
